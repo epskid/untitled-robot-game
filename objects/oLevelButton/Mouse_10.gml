@@ -1,0 +1,3 @@
+/// @description Hover
+
+hover = true

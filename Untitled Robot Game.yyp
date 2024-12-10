@@ -3,12 +3,24 @@
   "resourceVersion": "1.6",
   "name": "Untitled Robot Game",
   "resources": [
+    {"id":{"name":"fntUi","path":"fonts/fntUi/fntUi.yy",},"order":0,},
+    {"id":{"name":"sButtonPause","path":"sprites/sButtonPause/sButtonPause.yy",},"order":2,},
+    {"id":{"name":"setup","path":"scripts/setup/setup.yy",},"order":0,},
+    {"id":{"name":"sCursor","path":"sprites/sCursor/sCursor.yy",},"order":3,},
     {"id":{"name":"acOomph","path":"animcurves/acOomph/acOomph.yy",},"order":0,},
     {"id":{"name":"tsCanyon","path":"tilesets/tsCanyon/tsCanyon.yy",},"order":0,},
     {"id":{"name":"sCanyon","path":"sprites/sCanyon/sCanyon.yy",},"order":1,},
+    {"id":{"name":"add_level_ui","path":"scripts/add_level_ui/add_level_ui.yy",},"order":1,},
     {"id":{"name":"sRobot","path":"sprites/sRobot/sRobot.yy",},"order":0,},
+    {"id":{"name":"musLoop","path":"sounds/musLoop/musLoop.yy",},"order":0,},
+    {"id":{"name":"sMainMenu","path":"sprites/sMainMenu/sMainMenu.yy",},"order":4,},
+    {"id":{"name":"rMainMenu","path":"rooms/rMainMenu/rMainMenu.yy",},"order":1,},
+    {"id":{"name":"oLevelButton","path":"objects/oLevelButton/oLevelButton.yy",},"order":2,},
     {"id":{"name":"acSquash","path":"animcurves/acSquash/acSquash.yy",},"order":1,},
+    {"id":{"name":"oAudioController","path":"objects/oAudioController/oAudioController.yy",},"order":3,},
     {"id":{"name":"oRobot","path":"objects/oRobot/oRobot.yy",},"order":0,},
+    {"id":{"name":"musIntro","path":"sounds/musIntro/musIntro.yy",},"order":1,},
+    {"id":{"name":"sButtonGreen","path":"sprites/sButtonGreen/sButtonGreen.yy",},"order":1,},
     {"id":{"name":"rLevel1","path":"rooms/rLevel1/rLevel1.yy",},"order":0,},
   ],
   "Options": [
@@ -33,6 +45,7 @@
     "children": [],
   },
   "RoomOrderNodes": [
+    {"roomId":{"name":"rMainMenu","path":"rooms/rMainMenu/rMainMenu.yy",},},
     {"roomId":{"name":"rLevel1","path":"rooms/rLevel1/rLevel1.yy",},},
   ],
   "Folders": [
