@@ -1,5 +1,10 @@
 /// @description Update Robot
 
+if !global.can_start {
+	alarm[0] = 30;
+	return;
+}
+
 function is_oob(dx, dy) {
 	return (dx < -1) || (dx >= room_width) || (dy < 0) || (dy >= room_height - 1);
 }
@@ -18,7 +23,7 @@ function eval_move_curve(curve) {
 function update_alpha(newRealX, newRealY) {
 	if tilemap_get_at_pixel(overlay, newRealX + 2, newRealY) != 0 {
 		image_alpha = max(image_alpha - 0.1, 0.25);
-	} else if tilemap_get_at_pixel(ground, newRealX + 2, newRealY) != 0 {
+	} else {
 		image_alpha = min(image_alpha + 0.1, 1);
 	}
 }
@@ -31,7 +36,7 @@ if !spawned {
 	return;
 }
 
-if !died && (tilemap_get_at_pixel(ground, realX + 1, realY) == 0) {
+if !died && tilemap_get_at_pixel(ground, realX + 1, realY) == 0 {
 	died = true;
 	layer = layer_get_id("lDeath");
 }
@@ -41,9 +46,9 @@ if died {
 	image_yscale = clamp(image_yscale - 0.07, 0, 1);
 	x = realX + ((1 - image_xscale) * robotSize) / 2;
 	y = realY + ((1 - image_yscale) * 2 * robotSize);
-	image_alpha = clamp(image_alpha - 0.07, 0, 1);
+	image_alpha = max(image_alpha - 0.07, 0);
 	
-	if (image_xscale == 0) {
+	if image_xscale == 0 {
 		room_restart();
 	}
 	return;

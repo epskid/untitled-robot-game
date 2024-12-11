@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "add_level_ui",
+  "name": "setup_window",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

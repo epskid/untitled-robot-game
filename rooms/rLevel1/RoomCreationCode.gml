@@ -1,1 +1,1 @@
-add_level_ui();
+setup_level("1", "The Basics.");

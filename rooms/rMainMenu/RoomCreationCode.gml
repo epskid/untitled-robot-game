@@ -1,4 +1,5 @@
-instance_create_layer(0, 0, layer_create(0), oAudioController);
+instance_create_depth(0, 0, 0, oAudioController);
+global.can_start = false;
 
 for (var _i = 0; _i <= room_last; _i++) {
 	var _split = string_split(room_get_name(_i), "rLevel", true);
