@@ -1,12 +1,12 @@
 function setup_level(level, desc) {
-	instance_create_depth(0, 0, 0, oDevEnv, {
-		tab_title: "LEVEL" + level + ".URG",
-	});
-	instance_create_depth(0, 1, 0, oFader, {
+	instance_create_depth(0, -100, 0, oFader, {
 		msg: "LEVEL " + level,
 		desc: desc,
 	});
-	
+	instance_create_depth(0, 0, 0, oDevEnv, {
+		tab_title: "LEVEL" + level + ".URG",
+	});
+
 	view_enabled = true;
 	view_visible[0] = true;
 	view_xport[0] = 32;

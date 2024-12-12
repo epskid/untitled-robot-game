@@ -9,3 +9,4 @@ Looking through the Git history, you may see the first three commits all differ 
 - Dec 8 and earlier -- laying foundations (getting the lil guy to move around the screen)
 - Dec 9 -- title screen/menu
 - Dec 10 -- level announcement & dynamic music & split window
+- Dec 11 -- more split window work
