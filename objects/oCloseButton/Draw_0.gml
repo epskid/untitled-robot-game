@@ -1,0 +1,1 @@
+// because this is a GUI-only object, we can add an empty draw event to hide any unwanted flickering

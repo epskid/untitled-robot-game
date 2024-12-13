@@ -1,14 +1,11 @@
-/// @description Update Robot
+// declare some basic helper functions
 
-if !global.can_start {
-	alarm[0] = 30;
-	return;
-}
-
+// checks if an x and y position is out of bounds
 function is_oob(dx, dy) {
 	return (dx < -1) || (dx >= room_width) || (dy < 0) || (dy >= room_height - 1);
 }
 
+// resets x and y to real positions
 function reset_real() {
 	x = realX;
 	y = realY;
@@ -16,12 +13,16 @@ function reset_real() {
 	moveDirections[0] = MoveDirection.NONE;
 }
 
+// evaluate a movement curve using the movementTime variable
 function eval_move_curve(curve) {
 	return animcurve_channel_evaluate(curve, movementTime);
 }
 
+// change the alpha if the player is obscured behind an overlay
 function update_alpha(newRealX, newRealY) {
+	// check if the player is on an overlay object in the tilemap
 	if tilemap_get_at_pixel(overlay, newRealX + 2, newRealY) != 0 {
+		// minimum 0.25 opacity
 		image_alpha = max(image_alpha - 0.1, 0.25);
 	} else {
 		image_alpha = min(image_alpha + 0.1, 1);
@@ -29,25 +30,33 @@ function update_alpha(newRealX, newRealY) {
 }
 
 if !spawned {
+	// scale up on a curve while spawning
 	image_xscale = animcurve_channel_evaluate(movementCurveChannel, (30 - alarm[0]) / 30);
 	image_yscale = animcurve_channel_evaluate(movementCurveChannel, (30 - alarm[0]) / 30);
+	// center after scale
 	x = realX + ((1 - image_xscale) * robotSize) / 2;
 	y = realY + ((1 - image_yscale) * robotSize) / 2;
 	return;
 }
 
+// if you're not on the ground, you're dead
 if !died && tilemap_get_at_pixel(ground, realX + 1, realY) == 0 {
 	died = true;
+	// move to a layer behind the ground for added effect on the fall
 	layer = layer_get_id("lDeath");
 }
 
 if died {
+	// scale down at a constant rate while falling
 	image_xscale = clamp(image_xscale - 0.07, 0, 1);
 	image_yscale = clamp(image_yscale - 0.07, 0, 1);
+	// center on x, change y for added effect
 	x = realX + ((1 - image_xscale) * robotSize) / 2;
 	y = realY + ((1 - image_yscale) * 2 * robotSize);
+	// dissapear into darkness
 	image_alpha = max(image_alpha - 0.07, 0);
 	
+	// once the robot can't be seen, restart
 	if image_xscale == 0 {
 		room_restart();
 	}
@@ -72,20 +81,26 @@ if keyboard_check_pressed(vk_down) {
 
 movementTime += 0.05;
 
+// evaluate the most recent direction
 switch moveDirections[0] {
 	case MoveDirection.LEFT:
+		// stop out of bounds movement
 		if is_oob(realX - sprite_width, realY) {
 			reset_real();
 			return;
 		}
+		// nice movement curve
 		x = realX - sprite_width * eval_move_curve(movementCurveChannel);
 		y = realY;
 		image_yscale = eval_move_curve(squashCurveChannelMinor);
 		image_xscale = eval_move_curve(squashCurveChannelMajor);
+		// center
 		y += ((1 - image_yscale) * robotSize) / 2;
+		// update alpha in case we're behind something now
 		update_alpha(realX - sprite_width, realY);
 		break;
 	case MoveDirection.RIGHT:
+		// ditto
 		if is_oob(realX + sprite_width, realY) {
 			reset_real();
 			return;
@@ -99,6 +114,7 @@ switch moveDirections[0] {
 		update_alpha(realX + sprite_width, realY);
 		break;
 	case MoveDirection.UP:
+		// ditto
 		if is_oob(realX, realY - sprite_height) {
 			reset_real();
 			return;
@@ -111,6 +127,7 @@ switch moveDirections[0] {
 		update_alpha(realX, realY - sprite_height);
 		break;
 	case MoveDirection.DOWN:
+		// ditto
 		if is_oob(realX, realY + sprite_height) {
 			reset_real();
 			return;
@@ -124,18 +141,20 @@ switch moveDirections[0] {
 		update_alpha(realX, realY + sprite_width);
 		break;
 	case MoveDirection.NONE:
+		// make sure player is in the right place & stop movement timer from ticking up
+		reset_real();
+		// select the next direction off the top of the stack, or wait for a new one
 		if array_length(moveDirections) > 1 {
 			array_delete(moveDirections, 0, 1);
 		}
-		movementTime = 0;
-		x = realX;
-		y = realY;
 		break;
 }
 
 if movementTime >= 1 {
+	// after a movement has been fully completed, reset the timer & wait for a new instruction
 	movementTime = 0;
 	moveDirections[0] = MoveDirection.NONE;
+	// update realX and realY to reflect current position
 	realX = x;
 	realY = y;
 }

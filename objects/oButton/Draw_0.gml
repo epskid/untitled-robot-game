@@ -1,0 +1,1 @@
+// a dummy draw event to prevent artifacts (this is a GUI layer object)

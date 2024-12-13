@@ -10,3 +10,4 @@ Looking through the Git history, you may see the first three commits all differ 
 - Dec 9 -- title screen/menu
 - Dec 10 -- level announcement & dynamic music & split window
 - Dec 11 -- more split window work
+- Dec 12 -- refactor & add comments/documentation (a new experience for me; I usually just write cryptic code and let the readers, including myself sometimes, decipher it)

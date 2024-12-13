@@ -1,4 +1,4 @@
-/// @description Initialize Robot
+// initialize the variables
 
 enum MoveDirection {
 	NONE,

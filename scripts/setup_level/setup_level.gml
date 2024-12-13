@@ -1,12 +1,14 @@
-function setup_level(level, desc) {
-	instance_create_depth(0, -100, 0, oFader, {
-		msg: "LEVEL " + level,
-		desc: desc,
-	});
+// this function is called by every level in the room creation code so I don't have to manually do this
+function setup_level(level) {
+	// create the development evironment
 	instance_create_depth(0, 0, 0, oDevEnv, {
 		tab_title: "LEVEL" + level + ".URG",
 	});
 
+	// create the viewport for the split-screen
+	// these numbers are mythical in nature
+	// they were forged in the fires of mount doom
+	// tldr; i plugged in random numbers until it worked
 	view_enabled = true;
 	view_visible[0] = true;
 	view_xport[0] = 32;

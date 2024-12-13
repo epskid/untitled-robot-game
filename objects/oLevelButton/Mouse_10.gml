@@ -1,3 +1,0 @@
-/// @description Hover
-
-hover = true
