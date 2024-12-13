@@ -1,8 +1,8 @@
 // this function is called by every level in the room creation code so I don't have to manually do this
-function setup_level(level) {
+function setup_level() {
 	// create the development evironment
 	instance_create_depth(0, 0, 0, oDevEnv, {
-		tab_title: "LEVEL" + level + ".URG",
+		tab_title: "LEVEL" + string_trim_start(room_get_name(room), ["rLevel"]) + ".URG",
 	});
 
 	// create the viewport for the split-screen

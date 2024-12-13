@@ -1,1 +1,1 @@
-setup_level("1");
+setup_level();
