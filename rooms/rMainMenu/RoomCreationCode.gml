@@ -3,6 +3,11 @@ if !instance_exists(oAudioController) {
 	instance_create_depth(0, 0, 0, oAudioController);
 }
 
+if !instance_exists(oCursorController) {
+	// create the cursor controller on first run
+	instance_create_depth(0, 0, 0, oCursorController);
+}
+
 // reset can_start
 global.can_start = false;
 

@@ -6,6 +6,7 @@ if global.can_start {
 	ticks = 0;
 }
 
+// create the basic elements
 start = instance_create_depth(0, 64, -1, oStartBlock);
 close = instance_create_depth(0, 10, -1, oWindowButton, {
 	sprite: sClose,
@@ -18,6 +19,8 @@ close = instance_create_depth(0, 10, -1, oWindowButton, {
 		});
 	}
 });
+
+// initialize all the block spawners
 spawners = [];
 
 for (var _i = 0; _i < array_length(spawn); ++_i;) {

@@ -9,12 +9,14 @@ var _xdiff = 640 * animcurve_channel_evaluate(oomph, ticks / 100);
 close.x = 586 - _xdiff;
 start.x = 96 - _xdiff;
 with start {
+	// call the step event on start to make sure its x and y values are updated
 	event_user(0);
 }
 for (var _i = 0; _i < array_length(spawners); ++_i;){
 	spawners[_i].x  = 416 - _xdiff;
 	
 	with spawners[_i] {
+		// call the step event on all the block spawners to align x and y
 		event_user(0);
 	}
 }

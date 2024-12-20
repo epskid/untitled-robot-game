@@ -1,3 +1,4 @@
+// place the program in the correct position
 function refresh_blocks(){
 	with instance_find(oDevEnv, 0) {
 		var _h = start.y + 40;
@@ -7,6 +8,7 @@ function refresh_blocks(){
 			_block.y = _h;
 			_h += _block.sprite_height - 8;
 			with _block {
+				// reset every hitbox (refresh_blocks is called when positions need to change)
 				reset_hitbox();
 			}
 		}

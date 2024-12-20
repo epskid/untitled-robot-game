@@ -6,6 +6,7 @@ draw_set_color(c_white);
 draw_text(x + 36, y + 16, "RUN");
 
 if hitbox.intersecting {
+	// draw the outline on intersect
 	draw_sprite_ext(sBlockOutline, 0, x, y, image_xscale, image_yscale, 0, c_white, 1);
 	depth = -5;
 } else {

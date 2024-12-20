@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "instance_satisfies5",
+  "name": "one_satisfy",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
