@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "oButton",
   "spriteId": {
-    "name": "sButtonGreen",
-    "path": "sprites/sButtonGreen/sButtonGreen.yy",
+    "name": "sButton",
+    "path": "sprites/sButton/sButton.yy",
   },
   "solid": false,
   "visible": true,
@@ -37,6 +37,8 @@
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"msg","varType":2,"value":"0","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"on_click","varType":4,"value":"0","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"scope","varType":4,"value":"0","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"color","varType":7,"value":"$FF58B258","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"text_color","varType":7,"value":"$FFFFFFFF","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
   ],
   "overriddenProperties": [],
   "parent": {
