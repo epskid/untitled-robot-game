@@ -19,6 +19,12 @@ close = instance_create_depth(0, 10, -1, oWindowButton, {
 		});
 	}
 });
+retry_btn = instance_create_depth(0, 16, -1, oWindowButton, {
+	sprite: sRetry,
+	do_something: function() {
+		instance_create_depth(0, 0, 0, oRetryer);
+	},
+});
 
 // initialize all the block spawners
 spawners = [];

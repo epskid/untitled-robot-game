@@ -73,6 +73,8 @@ if hovered && mouse_check_button_pressed(mb_left) && all_satisfy(oCodeBlock, fun
 		refresh_blocks();
 		// create a snapping hitbox
 		reset_hitbox();
+		// play the snapping sound
+		audio_play_sound(mSnap, 1, false);
 	}
 
 	// reset selected

@@ -17,7 +17,4 @@ function setup_level(spawn) {
 	view_wport[0] = 64;
 	view_hport[0] = 64;
 	view_camera[0] = camera_create_view(0, 0, 128, 64);
-	
-	// reset program
-	global.program = [];
 }

@@ -1,8 +1,8 @@
 // declare some basic helper functions
 
-// checks if an x and y position is out of bounds
+// checks if an x and y position is out of bounds or colliding with an obstacle
 function is_oob(dx, dy) {
-	return (dx < -1) || (dx >= room_width) || (dy < 0) || (dy >= room_height - 1);
+	return (dx < -1) || (dx >= room_width) || (dy < 0) || (dy >= room_height - 1) || (tilemap_get_at_pixel(obstacles, dx + 2, dy + 2) != 0);
 }
 
 // resets x and y to real positions
@@ -21,7 +21,7 @@ function eval_move_curve(curve) {
 // change the alpha if the player is obscured behind an overlay
 function update_alpha(newRealX, newRealY) {
 	// check if the player is on an overlay object in the tilemap
-	if tilemap_get_at_pixel(overlay, newRealX + 2, newRealY) != 0 {
+	if tilemap_get_at_pixel(overlay, newRealX + 2, newRealY + 2) != 0 {
 		// minimum 0.25 opacity
 		image_alpha = max(image_alpha - 0.1, 0.25);
 	} else {
@@ -58,7 +58,7 @@ if died {
 	
 	// once the robot can't be seen, restart
 	if image_xscale == 0 {
-		room_restart();
+		instance_create_depth(0, 0, 0, oRetryer);
 	}
 	return;
 }
@@ -80,65 +80,42 @@ if keyboard_check_pressed(vk_down) {
 }
 
 movementTime += 0.05;
+var _next_x, _next_y;
+var _x_anim_offs = 0;
+var _y_anim_offs = 0;
 
 // evaluate the most recent direction
 switch moveDirections[0] {
 	case MoveDirection.LEFT:
-		// stop out of bounds movement
-		if is_oob(realX - sprite_width, realY) {
-			reset_real();
-			return;
-		}
-		// nice movement curve
-		x = realX - sprite_width * eval_move_curve(movementCurveChannel);
-		y = realY;
+		_next_x = -sprite_width;
+		_next_y = 0;
 		image_yscale = eval_move_curve(squashCurveChannelMinor);
 		image_xscale = eval_move_curve(squashCurveChannelMajor);
 		// center
-		y += ((1 - image_yscale) * robotSize) / 2;
-		// update alpha in case we're behind something now
-		update_alpha(realX - sprite_width, realY);
+		_y_anim_offs = ((1 - image_yscale) * robotSize) / 2;
 		break;
-	case MoveDirection.RIGHT:
-		// ditto
-		if is_oob(realX + sprite_width, realY) {
-			reset_real();
-			return;
-		}
-		x = realX + sprite_width * eval_move_curve(movementCurveChannel);
-		y = realY;
+	case MoveDirection.RIGHT:	
+		_next_x = sprite_width;
+		_next_y = 0;
 		image_yscale = eval_move_curve(squashCurveChannelMinor);
 		image_xscale = eval_move_curve(squashCurveChannelMajor);
-		y += ((1 - image_yscale) * robotSize) / 2;
-		x += ((1 - image_xscale) * robotSize);
-		update_alpha(realX + sprite_width, realY);
+		_y_anim_offs = ((1 - image_yscale) * robotSize) / 2;
+		_x_anim_offs = ((1 - image_xscale) * robotSize);
 		break;
 	case MoveDirection.UP:
-		// ditto
-		if is_oob(realX, realY - sprite_height) {
-			reset_real();
-			return;
-		}
-		x = realX;
-		y = realY - sprite_height * eval_move_curve(movementCurveChannel);
+		_next_x = 0;
+		_next_y = -sprite_height;
 		image_xscale = eval_move_curve(squashCurveChannelMinor);
 		image_yscale = eval_move_curve(squashCurveChannelMajor);
-		x += ((1 - image_xscale) * robotSize) / 2;
-		update_alpha(realX, realY - sprite_height);
+		_x_anim_offs += ((1 - image_xscale) * robotSize) / 2;
 		break;
 	case MoveDirection.DOWN:
-		// ditto
-		if is_oob(realX, realY + sprite_height) {
-			reset_real();
-			return;
-		}
-		x = realX;
-		y = realY + sprite_height * eval_move_curve(movementCurveChannel);
+		_next_x = 0;
+		_next_y = sprite_height;
 		image_xscale = eval_move_curve(squashCurveChannelMinor);
 		image_yscale = eval_move_curve(squashCurveChannelMajor);
-		x += ((1 - image_xscale) * robotSize) / 2;
-		y += ((1 - image_yscale) * robotSize);
-		update_alpha(realX, realY + sprite_width);
+		_x_anim_offs += ((1 - image_xscale) * robotSize) / 2;
+		_y_anim_offs += ((1 - image_yscale) * robotSize);
 		break;
 	case MoveDirection.NONE:
 		// make sure player is in the right place & stop movement timer from ticking up
@@ -147,7 +124,32 @@ switch moveDirections[0] {
 		if array_length(moveDirections) > 1 {
 			array_delete(moveDirections, 0, 1);
 		}
-		break;
+		return;
+}
+
+// stop out of bounds movement
+if !is_oob(realX + _next_x, realY + _next_y) {
+	// nice movement curve
+	var _x_mul = 1;
+	var _y_mul = 1;
+	if _next_x != 0 {
+		_x_mul = eval_move_curve(movementCurveChannel);
+	}
+	if _next_y != 0 {
+		_y_mul = eval_move_curve(movementCurveChannel);
+	}
+	x = realX + (_next_x * _x_mul) + _x_anim_offs;
+	y = realY + (_next_y * _y_mul) + _y_anim_offs;
+	// update alpha in case we're behind something now
+	update_alpha(realX + _next_x, realY + _next_y);
+} else {
+	// keep at real positions
+	x = realX + _x_anim_offs;
+	y = realY + _y_anim_offs;
+	
+	if movementTime >= 1 {
+		reset_real();
+	}
 }
 
 if movementTime >= 1 {

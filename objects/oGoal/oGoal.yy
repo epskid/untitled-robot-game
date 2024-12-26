@@ -1,10 +1,10 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "oFlag",
+  "name": "oGoal",
   "spriteId": {
-    "name": "sFlag",
-    "path": "sprites/sFlag/sFlag.yy",
+    "name": "sGoal",
+    "path": "sprites/sGoal/sGoal.yy",
   },
   "solid": false,
   "visible": true,

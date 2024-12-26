@@ -12,3 +12,4 @@ Looking through the Git history, you may see the first three commits all differ 
 - Dec 11 -- more split window work
 - Dec 12 -- refactor & add comments/documentation (a new experience for me; I usually just write cryptic code and let the readers, including myself sometimes, decipher it)
 - Dec 12-19 -- finally, a working editor
+- Dec 26 -- add a restart button, refactors, animation changes
