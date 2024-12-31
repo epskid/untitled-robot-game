@@ -8,8 +8,10 @@ enum MoveDirection {
 	DOWN,
 }
 
+won = false;
 robotSize = 8;
 movementCurveChannel = animcurve_get_channel(acOomph, 0);
+winCurveChannel = animcurve_get_channel(acOomph, 1);
 squashCurveChannelMinor = animcurve_get_channel(acSquash, 0);
 squashCurveChannelMajor = animcurve_get_channel(acSquash, 1);
 movementTime = 0.0;

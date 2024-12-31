@@ -39,6 +39,22 @@ if !spawned {
 	return;
 }
 
+if won {
+	// scale down
+	image_xscale = max(-5 * animcurve_channel_evaluate(winCurveChannel, (100 - alarm[1]) / 100) + 1, 0);
+	image_yscale = max(-5 * animcurve_channel_evaluate(winCurveChannel, (100 - alarm[1]) / 100) + 1, 0);
+	// center after scale
+	x = realX + ((1 - image_xscale) * robotSize) / 2;
+	y = realY + ((1 - image_yscale) * robotSize) / 2;
+	return;
+}
+
+won = place_meeting(realX, realY, oGoal);
+
+if won {
+	alarm[1] = 100;
+}
+
 // if you're not on the ground, you're dead
 if !died && tilemap_get_at_pixel(ground, realX + 1, realY) == 0 {
 	died = true;

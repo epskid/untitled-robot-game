@@ -19,6 +19,7 @@
     {"id":{"name":"array_index_of","path":"scripts/array_index_of/array_index_of.yy",},"order":6,},
     {"id":{"name":"sCodeBlock","path":"sprites/sCodeBlock/sCodeBlock.yy",},"order":10,},
     {"id":{"name":"setup_level","path":"scripts/setup_level/setup_level.yy",},"order":1,},
+    {"id":{"name":"rLevel2","path":"rooms/rLevel2/rLevel2.yy",},"order":3,},
     {"id":{"name":"sRobot","path":"sprites/sRobot/sRobot.yy",},"order":0,},
     {"id":{"name":"oWindowButton","path":"objects/oWindowButton/oWindowButton.yy",},"order":7,},
     {"id":{"name":"mMelody","path":"sounds/mMelody/mMelody.yy",},"order":0,},
@@ -33,6 +34,7 @@
     {"id":{"name":"mSnap","path":"sounds/mSnap/mSnap.yy",},"order":2,},
     {"id":{"name":"sGrab","path":"sprites/sGrab/sGrab.yy",},"order":11,},
     {"id":{"name":"sEmpty","path":"sprites/sEmpty/sEmpty.yy",},"order":16,},
+    {"id":{"name":"rEnd","path":"rooms/rEnd/rEnd.yy",},"order":2,},
     {"id":{"name":"oButton","path":"objects/oButton/oButton.yy",},"order":2,},
     {"id":{"name":"sTab","path":"sprites/sTab/sTab.yy",},"order":6,},
     {"id":{"name":"oGoal","path":"objects/oGoal/oGoal.yy",},"order":15,},
@@ -50,6 +52,7 @@
     {"id":{"name":"mDrums","path":"sounds/mDrums/mDrums.yy",},"order":1,},
     {"id":{"name":"sButton","path":"sprites/sButton/sButton.yy",},"order":1,},
     {"id":{"name":"oCodeBlock","path":"objects/oCodeBlock/oCodeBlock.yy",},"order":9,},
+    {"id":{"name":"oGridMode","path":"objects/oGridMode/oGridMode.yy",},"order":16,},
     {"id":{"name":"rLevel1","path":"rooms/rLevel1/rLevel1.yy",},"order":0,},
   ],
   "Options": [
@@ -76,6 +79,8 @@
   "RoomOrderNodes": [
     {"roomId":{"name":"rMainMenu","path":"rooms/rMainMenu/rMainMenu.yy",},},
     {"roomId":{"name":"rLevel1","path":"rooms/rLevel1/rLevel1.yy",},},
+    {"roomId":{"name":"rEnd","path":"rooms/rEnd/rEnd.yy",},},
+    {"roomId":{"name":"rLevel2","path":"rooms/rLevel2/rLevel2.yy",},},
   ],
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Animation Curves","folderPath":"folders/Animation Curves.yy","order":12,},

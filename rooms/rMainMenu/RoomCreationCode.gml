@@ -1,6 +1,6 @@
 if !instance_exists(oAudioController) {
 	// create an audio controller on first run
-	instance_create_depth(0, 0, 0, oAudioController);
+	global.audio_controller = instance_create_depth(0, 0, 0, oAudioController);
 }
 
 if !instance_exists(oCursorController) {
@@ -12,24 +12,14 @@ if !instance_exists(oCursorController) {
 global.can_start = false;
 
 // iterate through all rooms and make a button if they are a level
-for (var _i = 0; _i <= room_last; _i++) {
-	var _room_name = room_get_name(_i);
-	if !string_starts_with(_room_name, "rLevel") {
-		// skip non-level rooms
-		continue;
-	}
-	// extract level index from room name
-	var _lvl = string_trim_start(_room_name, ["rLevel"]);	
-
-	// parse level index from string to int
-	var _num = real(_lvl);
+for (var _num = 1; _num < array_length(global.room_map); _num++) {
 	// create a button in the correct position to create an 8-wide grid
 	instance_create_layer(room_width - (8 * 96) + ((_num - 1) % 8) * 96, 128 + (floor((_num - 1) / 8) * 96), "lButtons", oButton, {
-		msg: _lvl,
+		msg: string(_num),
 		// ugly scope hack...
 		scope: {
-			num: _lvl,
-			room_idx: _i,
+			num: string(_num),
+			room_idx: global.room_map[_num],
 		},
 		on_click: function(scope) {
 			go_to({

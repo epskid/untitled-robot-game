@@ -1,7 +1,7 @@
 {
   "resourceType": "GMRoom",
   "resourceVersion": "1.0",
-  "name": "rLevel1",
+  "name": "rLevel2",
   "isDnd": false,
   "volume": 1.0,
   "parentRoom": null,
@@ -17,8 +17,8 @@
   ],
   "layers": [
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"lMain","instances":[
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"iRobot","properties":[],"isDnd":false,"objectId":{"name":"oRobot","path":"objects/oRobot/oRobot.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":0.0,"y":56.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"iGoal","properties":[],"isDnd":false,"objectId":{"name":"oGoal","path":"objects/oGoal/oGoal.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":48.0,"y":16.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"iRobot_1","properties":[],"isDnd":false,"objectId":{"name":"oRobot","path":"objects/oRobot/oRobot.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":0.0,"y":56.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"iGoal_1","properties":[],"isDnd":false,"objectId":{"name":"oGoal","path":"objects/oGoal/oGoal.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":48.0,"y":16.0,},
       ],"visible":true,"depth":0,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritVisibility":true,"inheritSubLayers":true,"gridX":8,"gridY":8,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"lObstacles","tilesetId":{"name":"tsCanyon","path":"tilesets/tsCanyon/tsCanyon.yy",},"x":0,"y":0,"tiles":{"TileDataFormat":1,"SerialiseWidth":8,"SerialiseHeight":8,"TileCompressedData":[
 -5,-2147483648,1,0,-7,-2147483648,1,0,
@@ -50,11 +50,11 @@
     {"resourceType":"GMRBackgroundLayer","resourceVersion":"1.0","name":"Background","spriteId":null,"colour":4278190080,"x":0,"y":0,"htiled":false,"vtiled":false,"hspeed":0.0,"vspeed":0.0,"stretch":false,"animationFPS":15.0,"animationSpeedType":0,"userdefinedAnimFPS":false,"visible":true,"depth":700,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritVisibility":true,"inheritSubLayers":true,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"effectEnabled":true,"effectType":null,"properties":[],},
   ],
   "inheritLayers": false,
-  "creationCodeFile": "rooms/rLevel1/RoomCreationCode.gml",
+  "creationCodeFile": "rooms/rLevel2/RoomCreationCode.gml",
   "inheritCode": false,
   "instanceCreationOrder": [
-    {"name":"iRobot","path":"rooms/rLevel1/rLevel1.yy",},
-    {"name":"iGoal","path":"rooms/rLevel1/rLevel1.yy",},
+    {"name":"iRobot_1","path":"rooms/rLevel2/rLevel2.yy",},
+    {"name":"iGoal_1","path":"rooms/rLevel2/rLevel2.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,
