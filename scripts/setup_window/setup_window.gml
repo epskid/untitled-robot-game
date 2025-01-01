@@ -3,6 +3,8 @@ function setup_window() {
 	window_set_caption("UNTITLED ROBOT GAME");
 	window_set_cursor(cr_none);
 	global.program = [];
+	// because of the way GML arrays work, we can assign values to seemingly arbitrary indices, resulting in a presumably faster (than a hashmap) lookup table for number keys only
+	// tldr; array go vroom vroom =)
 	global.room_map = [];
 	
 	// iterate through all rooms and add them to the array

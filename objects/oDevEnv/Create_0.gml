@@ -6,8 +6,10 @@ if global.can_start {
 	ticks = 0;
 }
 
-// create the basic elements
+// create the basic elements:
+// the starting block
 start = instance_create_depth(0, 64, -1, oStartBlock);
+// the close butto
 close = instance_create_depth(0, 10, -1, oWindowButton, {
 	sprite: sClose,
 	do_something: function() {
@@ -19,11 +21,21 @@ close = instance_create_depth(0, 10, -1, oWindowButton, {
 		});
 	}
 });
-retry_btn = instance_create_depth(0, 16, -1, oWindowButton, {
+// the retry button
+retry = instance_create_depth(0, 16, -1, oWindowButton, {
 	sprite: sRetry,
 	do_something: function() {
 		instance_create_depth(0, 0, 0, oRetryer);
 	},
+});
+// and the run button
+run = instance_create_depth(0, 16, -6, oWindowButton, {
+	sprite: sRunProgram,
+	do_something: function() {
+		for (var _ip = 0; _ip < array_length(global.program); ++_ip;) {
+			global.program[_ip].action();
+		}
+	}
 });
 
 // initialize all the block spawners

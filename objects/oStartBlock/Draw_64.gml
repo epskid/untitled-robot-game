@@ -3,7 +3,7 @@ image_xscale = (96 / sprite_get_width(sprite_index));
 image_yscale = 1.5;
 draw_self();
 draw_set_color(c_white);
-draw_text(x + 36, y + 16, "RUN");
+draw_text(x + 8, y + 16, "START");
 
 if hitbox.intersecting {
 	// draw the outline on intersect

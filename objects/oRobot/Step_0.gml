@@ -40,7 +40,7 @@ if !spawned {
 }
 
 if won {
-	// scale down
+	// scale down in a bouncy way
 	image_xscale = max(-5 * animcurve_channel_evaluate(winCurveChannel, (100 - alarm[1]) / 100) + 1, 0);
 	image_yscale = max(-5 * animcurve_channel_evaluate(winCurveChannel, (100 - alarm[1]) / 100) + 1, 0);
 	// center after scale
@@ -52,6 +52,8 @@ if won {
 won = place_meeting(realX, realY, oGoal);
 
 if won {
+	// play a little jingle and start the win-timer
+	audio_play_sound(mSuccess, 10000, false);
 	alarm[1] = 100;
 }
 

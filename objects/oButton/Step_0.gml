@@ -1,3 +1,8 @@
+if disabled {
+	// don't worry about hover-scaling when the button is disabled
+	return;
+}
+
 if hover {
 	// scale up the image at a rate of 0.01 per frame, clamping at 1.1
 	image_xscale = min(image_xscale + 0.01, 1.1);

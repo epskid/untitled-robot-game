@@ -24,4 +24,6 @@ function setup_level(spawn) {
 		start_x: window_get_width() / 2,
 		cell_size: window_get_height() / 8
 	});
+	
+	global.program = [];
 }

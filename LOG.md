@@ -13,3 +13,4 @@ Looking through the Git history, you may see the first three commits all differ 
 - Dec 12 -- refactor & add comments/documentation (a new experience for me; I usually just write cryptic code and let the readers, including myself sometimes, decipher it)
 - Dec 12-19 -- finally, a working editor
 - Dec 26 -- add a restart button, refactors, animation changes
+- Dec 31-Jan 1 -- saving progress/settings to a file, add a goal/level changing, move the run button

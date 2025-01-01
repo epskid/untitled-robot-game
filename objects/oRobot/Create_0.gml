@@ -27,3 +27,5 @@ spawned = false;
 image_xscale = 0;
 image_yscale = 0;
 alarm[0] = 30;
+
+global.robot = id;

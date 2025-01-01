@@ -7,12 +7,10 @@ var _xdiff = 640 * animcurve_channel_evaluate(oomph, ticks / 100);
 
 // move everything using said x-offset
 close.x = 586 - _xdiff;
-retry_btn.x = 308 - _xdiff;
+run.x = 288 - _xdiff;
+retry.x = 308 - _xdiff;
 start.x = 96 - _xdiff;
-with start {
-	// call the step event on start to make sure its x and y values are updated
-	event_user(0);
-}
+
 for (var _i = 0; _i < array_length(spawners); ++_i;){
 	spawners[_i].x  = 416 - _xdiff;
 	
