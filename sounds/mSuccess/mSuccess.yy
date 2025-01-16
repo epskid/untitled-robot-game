@@ -17,7 +17,7 @@
   "soundFile": "mSuccess.wav",
   "duration": 1.663356,
   "parent": {
-    "name": "Sounds",
-    "path": "folders/Sounds.yy",
+    "name": "sfx",
+    "path": "folders/Sounds/sfx.yy",
   },
 }

@@ -14,10 +14,10 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "mDrums.wav",
-  "duration": 2.661995,
+  "soundFile": "mDrums.mp3",
+  "duration": 21.394285,
   "parent": {
-    "name": "Sounds",
-    "path": "folders/Sounds.yy",
+    "name": "music",
+    "path": "folders/Sounds/music.yy",
   },
 }

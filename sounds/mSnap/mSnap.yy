@@ -17,7 +17,7 @@
   "soundFile": "mSnap.wav",
   "duration": 0.14839,
   "parent": {
-    "name": "Sounds",
-    "path": "folders/Sounds.yy",
+    "name": "sfx",
+    "path": "folders/Sounds/sfx.yy",
   },
 }

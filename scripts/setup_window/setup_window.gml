@@ -22,6 +22,8 @@ function setup_window() {
 		
 		global.room_map[_num] = _i;
 	}
+	
+	global.no_progression = false;
 }
 
 // mysterious GML code dark magic to run on startup

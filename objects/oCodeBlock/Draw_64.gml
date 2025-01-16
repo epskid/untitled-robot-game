@@ -22,17 +22,21 @@ if !selected {
 if hitbox != noone && hitbox.intersecting && !instance_find(oStartBlock, 0).hitbox.intersecting {
 	// if the user might drop on this block
 	
-	// find the first hitbox the user is intersecting with
-	for (var _i = 0; _i < array_length(global.program); ++_i;) {
-		if global.program[_i].hitbox.intersecting {
-			if global.program[_i] == id {
-				// if it is us, raise up and draw an indicator
-				depth = -4;
-				// note: I had to add a 1 opacity pixel to the top left corner of the sprite for it to scale properly for some reason
-				draw_sprite_ext(sBlockOutline, 0, x, y, image_xscale, image_yscale, 0, c_white, 1);
-			} else {
-				// short-circuit on early failiure
-				break;
+	if global.program_started || (array_length(global.program) == global.limit) {
+		// no highlight if limit is fullfilled or program is running
+	} else {
+		// find the first hitbox the user is intersecting with
+		for (var _i = 0; _i < array_length(global.program); ++_i;) {
+			if global.program[_i].hitbox.intersecting {
+				if global.program[_i] == id {
+					// if it is us, raise up and draw an indicator
+					depth = -4;
+					// note: I had to add a 1 opacity pixel to the top left corner of the sprite for it to scale properly for some reason
+					draw_sprite_ext(sBlockOutline, 0, x, y, image_xscale, image_yscale, 0, c_white, 1);
+				} else {
+					// short-circuit on early failiure
+					break;
+				}
 			}
 		}
 	}

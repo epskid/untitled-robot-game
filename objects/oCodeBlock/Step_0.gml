@@ -38,6 +38,12 @@ if hovered && mouse_check_button_pressed(mb_left) && all_satisfy(oCodeBlock, fun
 	x = _mouse_x + mouse_x_off;
 	y = _mouse_y + mouse_y_off;
 } else if selected && !mouse_check_button(mb_left) {
+	if (array_length(global.program) == global.limit) || global.program_started {
+		// always drop block if program will exceed limit or the program has started already
+		alarm[0] = 10;
+		return;
+	}
+	
 	// if the user drops the block
 	var _snapped = false;
 	

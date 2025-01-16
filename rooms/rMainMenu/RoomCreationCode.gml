@@ -1,3 +1,5 @@
+instance_create_depth(0, 0, 0, oCheatcodeManager);
+
 if !instance_exists(oIniManager) {
 	// load urg.ini
 	instance_create_depth(0, 0, 0, oIniManager);
@@ -20,7 +22,7 @@ global.can_start = false;
 for (var _num = 1; _num < array_length(global.room_map); _num++) {
 	var _btn_x = room_width - (8 * 96) + ((_num - 1) % 8) * 96
 	var _btn_y = 128 + (floor((_num - 1) / 8) * 96);
-	if _num <= (global.config.state.last_level + 1) {
+	if global.no_progression || (_num <= (global.config.state.last_level + 1)) {
 		// create a button in the correct position to create an 8-wide grid
 		instance_create_layer(_btn_x, _btn_y, "lButtons", oButton, {
 			msg: string(_num),
@@ -46,4 +48,4 @@ for (var _num = 1; _num < array_length(global.room_map); _num++) {
 			disabled: true,
 		});
 	}
-}	
+}

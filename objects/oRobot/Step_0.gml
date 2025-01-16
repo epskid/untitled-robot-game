@@ -58,19 +58,25 @@ if won {
 }
 
 // if you're not on the ground, you're dead
-if !died && tilemap_get_at_pixel(ground, realX + 1, realY) == 0 {
+if !died && tilemap_get_at_pixel(ground, realX + 1, realY + 1) == 0 {
 	died = true;
 	// move to a layer behind the ground for added effect on the fall
 	layer = layer_get_id("lDeath");
+} else if !died && place_meeting(realX, realY, oBug) {
+	died = true;
 }
 
 if died {
 	// scale down at a constant rate while falling
 	image_xscale = clamp(image_xscale - 0.07, 0, 1);
 	image_yscale = clamp(image_yscale - 0.07, 0, 1);
-	// center on x, change y for added effect
+	// center on x, change y for added effect if fell off edge
 	x = realX + ((1 - image_xscale) * robotSize) / 2;
-	y = realY + ((1 - image_yscale) * 2 * robotSize);
+	if layer == layer_get_id("lDeath") {
+		y = realY + ((1 - image_yscale) * 2 * robotSize);
+	} else {
+		y = realY + ((1 - image_yscale) * robotSize) / 2;
+	}
 	// dissapear into darkness
 	image_alpha = max(image_alpha - 0.07, 0);
 	
@@ -81,24 +87,10 @@ if died {
 	return;
 }
 
-if keyboard_check_pressed(vk_up) {
-	array_push(moveDirections, MoveDirection.UP);
-}
-
-if keyboard_check_pressed(vk_left) {
-	array_push(moveDirections, MoveDirection.LEFT);
-}
-
-if keyboard_check_pressed(vk_right) {
-	array_push(moveDirections, MoveDirection.RIGHT);
-}
-
-if keyboard_check_pressed(vk_down) {
-	array_push(moveDirections, MoveDirection.DOWN);
-}
-
 movementTime += 0.05;
 var _next_x, _next_y;
+var _wait_x, _wait_y;
+var _wait = false;
 var _x_anim_offs = 0;
 var _y_anim_offs = 0;
 
@@ -135,14 +127,62 @@ switch moveDirections[0] {
 		_x_anim_offs += ((1 - image_xscale) * robotSize) / 2;
 		_y_anim_offs += ((1 - image_yscale) * robotSize);
 		break;
+	case MoveDirection.W_LEFT:
+		_wait = true;
+		_wait_x = -sprite_width;
+		_wait_y = 0;
+		break;
+	case MoveDirection.W_RIGHT:
+		_wait = true;
+		_wait_x = sprite_width;
+		_wait_y = 0;
+		break;
+	case MoveDirection.W_UP:
+		_wait = true;
+		_wait_x = 0;
+		_wait_y = -sprite_height;
+		break;
+	case MoveDirection.W_DOWN:
+		_wait = true;
+		_wait_x = 0;
+		_wait_y = sprite_height;
+		break;
 	case MoveDirection.NONE:
 		// make sure player is in the right place & stop movement timer from ticking up
 		reset_real();
 		// select the next direction off the top of the stack, or wait for a new one
 		if array_length(moveDirections) > 1 {
 			array_delete(moveDirections, 0, 1);
+		} else if program_done {
+			// if we stop and we're not touching the goal, restart
+			died = true;
 		}
 		return;
+}
+
+if _wait {
+	movementTime = 0;
+	switch waitState {
+		case WaitState.NOTHING_YET:
+			// if we are waiting to see the bug
+			
+			if place_meeting(realX + _wait_x, realY + _wait_y, oBug) {
+				// once we see it, switch state
+				waitState = WaitState.BUG_HERE;
+			}
+			break;
+		case WaitState.BUG_HERE:
+			// if we are waiting for the bug to go away
+			
+			if !place_meeting(realX + _wait_x, realY + _wait_y, oBug) {
+				// once we see it, reset wait state and ask for another instruction
+				waitState = WaitState.NOTHING_YET;
+				moveDirections[0] = MoveDirection.NONE;
+			}
+			break;
+	}
+	
+	return;
 }
 
 // stop out of bounds movement

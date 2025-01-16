@@ -6,15 +6,11 @@ if global.current_level > global.config.state.last_level {
 if global.current_level + 1 >= array_length(global.room_map) {
 	// if this is the last level, go to the end
 	go_to({
+		msg: "Beginning Buffer Overflow Exploit...\n" + string_repeat(string_repeat("LIES", 128) + "\n", 64),
 		room_to: rEnd,
-		length: 500,
+		length: 24,
 		on_spawn: function() {
-			// fade out the music as soon as the transition starts
-			global.audio_controller.fade_out_master = true;
-		},
-		on_die: function() {
-			// fade in the music when it ends
-			global.audio_controller.fade_in_master = true;
+			global.audio_controller.music_override = mCrit;
 		}
 	});
 	return;

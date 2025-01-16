@@ -29,5 +29,8 @@ draw_set_color(c_dkgray);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 draw_text(32 - _xdiff, 20, tab_title);
+if !is_infinity(global.limit) {
+	draw_text(32 - _xdiff, 600, "REMAINING MEMORY: " + string(global.limit - array_length(global.program)));
+}
 
 // this has no sprite, so we don't need a dummy draw event

@@ -1,4 +1,10 @@
-// default to the regular cursor sprite
+// hide the cursor at the endings
+if (room == rEnd) || (room = rTrueEnd) {
+	cursor_sprite = sEmpty;
+	return;
+}
+
+// otherwise, default to the regular cursor sprite
 cursor_sprite = sCursor;
 
 // but if the user is hovering a code block

@@ -1,10 +1,15 @@
 // this function is called by every level in the room creation code so I don't have to manually do this
-function setup_level(spawn) {
+function setup_level(spawn, limit, dialog = undefined) {
+	global.program_started = false;
+	if !is_undefined(dialog) && !instance_exists(oDialogManager) {
+		instance_create_depth(0, 0, -2, oDialogManager, dialog);
+	}
+	global.limit = limit;
 	global.current_level = real(string_trim_start(room_get_name(room), ["rLevel"]));
 	// create the development evironment
 	instance_create_depth(0, 0, 0, oDevEnv, {
 		tab_title: "LEVEL" + string(global.current_level) + ".URG",
-		spawn: spawn
+		spawn: spawn,
 	});
 
 	// create the viewport for the split-screen

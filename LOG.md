@@ -14,3 +14,4 @@ Looking through the Git history, you may see the first three commits all differ 
 - Dec 12-19 -- finally, a working editor
 - Dec 26 -- add a restart button, refactors, animation changes
 - Dec 31-Jan 1 -- saving progress/settings to a file, add a goal/level changing, move the run button
+- Jan 1-Jan 15 -- implement more features like bugs and dialog etc. (it appears my amazing commit-message skills have invaded the realm of changelogs)

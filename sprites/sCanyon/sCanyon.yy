@@ -92,7 +92,7 @@
     "resourceType": "GMNineSliceData",
   },
   "parent": {
-    "name": "Tile Sets",
-    "path": "folders/Tile Sets.yy",
+    "name": "sprites",
+    "path": "folders/Tile Sets/sprites.yy",
   },
 }
